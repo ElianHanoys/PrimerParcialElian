@@ -1,0 +1,23 @@
+name: Deploy to Surge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and Deploy
+      run: |
+        # Configurar Surge.sh
+        npm install --global surge
+        surge token ebde216f6f14ecb82b38f22137bf7db2
+
+        # Desplegar en Surge.sh
+        surge --project ./ --domain eliandomaintest.surge.sh 
